@@ -38,10 +38,6 @@ const Discover = () => {
             // 'details' is provided when fetchDetails = true
             console.log(details?.geometry?.viewport);
           }}
-          // query={{
-          //   key: 'AIzaSyDWpuVw2apN-XgX3gmrzsHrZgr1AG4sCxQ',
-          //   language: 'en',
-          // }}
 
           // query={{
           //   key: 'YOUR API KEY',
