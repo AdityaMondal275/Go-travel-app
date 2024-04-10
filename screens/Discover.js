@@ -1,11 +1,14 @@
-import { View, Text, SafeAreaView, Image,  } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { View, Text, SafeAreaView, Image, ScrollView,  } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
-import { Avater } from '../assets';
+import { Attractions, Avater, Hotels, Restaurants } from '../assets';
+import MenuContainer from '../components/MenuContainer';
 
 const Discover = () => {
     const navigation = useNavigation();
+
+    const [type, setType] = useState(restaurants)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -50,6 +53,35 @@ const Discover = () => {
         />
 
       </View>
+
+      {/*Menu container*/}
+      <ScrollView>
+        <view className='flex-row irems-center justify-center px-8 mt-8'>
+            <MenuContainer
+              key={"hotel"}
+              title="Hotels"
+              imageSrc={Hotels}
+              type={type}
+              setType={setType}
+            />
+
+<MenuContainer
+              key={"attractions"}
+              title="Attractions"
+              imageSrc={Attractions}
+              type={type}
+              setType={setType}
+            />
+
+<MenuContainer
+              key={"restaurants"}
+              title="Restaurants"
+              imageSrc={Restaurants}
+              type={type}
+              setType={setType}
+            />
+        </view>
+      </ScrollView>
     </SafeAreaView>
   )
 }
