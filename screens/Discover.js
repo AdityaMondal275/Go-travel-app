@@ -8,7 +8,7 @@ import MenuContainer from '../components/MenuContainer';
 const Discover = () => {
     const navigation = useNavigation();
 
-    const [type, setType] = useState(restaurants)
+    const [type, setType] = useState("restaurants")
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -56,7 +56,7 @@ const Discover = () => {
 
       {/*Menu container*/}
       <ScrollView>
-        <view className='flex-row irems-center justify-center px-8 mt-8'>
+        <View className='flex-row irems-center justify-center px-8 mt-8'>
             <MenuContainer
               key={"hotel"}
               title="Hotels"
@@ -80,7 +80,7 @@ const Discover = () => {
               type={type}
               setType={setType}
             />
-        </view>
+        </View>
       </ScrollView>
     </SafeAreaView>
   )
