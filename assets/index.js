@@ -1,5 +1,5 @@
 export {default as HeroImage} from "./hero.png"
 export {default as Avater} from "./avatar.jpeg"
-export {default as Hotels} from "./hotel.jpeg"
+export {default as Hotels} from "./hotel.png"
 export {default as Attractions} from "./attraction.png"
-export {default as Restaurants} from "./restaurants.jpeg"
+export {default as Restaurants} from "./restaurants.png"

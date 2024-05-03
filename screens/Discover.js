@@ -1,9 +1,12 @@
-import { View, Text, SafeAreaView, Image, ScrollView,  } from 'react-native'
+import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity,  } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
 import { Attractions, Avater, Hotels, Restaurants } from '../assets';
 import MenuContainer from '../components/MenuContainer';
+
+import { FontAwesome } from '@expo/vector-icons';
+import ItemCarContainer from '../components/ItemCarContainer';
 
 const Discover = () => {
     const navigation = useNavigation();
@@ -52,7 +55,7 @@ const Discover = () => {
 
       {/*Menu container*/}
       <ScrollView>
-        <View className='flex-row irems-center justify-center px-8 mt-8'>
+        <View className='flex-row irems-center justify-between px-8 mt-8'>
             <MenuContainer
               key={"hotel"}
               title="Hotels"
@@ -77,6 +80,29 @@ const Discover = () => {
               setType={setType}
             />
         </View>
+
+        <View>
+          <View className="flex-row items-center justify-between px-4 mt-8">
+            <Text className="text-[#2C7379] text-[28px] font-bold">Top Tips</Text>
+            <TouchableOpacity className="flex-row items-center justify-center space-x-2">
+              <Text className="text-[#A0C4C7] text-[20px] font-bold">Explore</Text>
+              <FontAwesome name="long-arrow-right" size={24} color="#A0C4C7" />
+            </TouchableOpacity>
+          </View>
+
+          <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
+            <ItemCarContainer 
+              key={"101"} 
+              imageSrc={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"} 
+              title="Soothing" 
+              location="Italy"/>
+            <ItemCarContainer 
+            key={"102"} 
+            imageSrc={"https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"} 
+            title="Adventure" location="Barcelona"/>
+          </View>
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   )

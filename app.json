@@ -4,10 +4,10 @@
     "slug": "Go-travel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/restaurants.jpeg",
+    "icon": "./assets/restaurants.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/restaurants.jpeg",
+      "image": "./assets/restaurants.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
