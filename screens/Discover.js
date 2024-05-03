@@ -93,12 +93,12 @@ const Discover = () => {
           <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
             <ItemCarContainer 
               key={"101"} 
-              imageSrc={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"} 
+              imageSrc={"https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"} 
               title="Soothing" 
               location="Italy"/>
             <ItemCarContainer 
             key={"102"} 
-            imageSrc={"https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"} 
+            imageSrc={"hotel.png"} 
             title="Adventure" location="Barcelona"/>
           </View>
         </View>
@@ -109,3 +109,5 @@ const Discover = () => {
 }
 
 export default Discover
+
+// https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg
