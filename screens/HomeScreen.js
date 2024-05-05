@@ -2,6 +2,7 @@ import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react';
 import {useNavigation} from '@react-navigation/native';
 import { HeroImage } from '../assets';
+import { AppLogo} from '../assets';
 import * as Animatable from 'react-native-animatable';
 
 const HomeScreen = () => {
@@ -14,55 +15,61 @@ const navigation = useNavigation();
     });
   }, [])
 
+  // [#A0C4C7]
   return (
-    <SafeAreaView className ="bg-white flex-1 relative">
+    <SafeAreaView className ="bg-[#2A2B4B] flex-1 relative">
       {/* First Section  */}
       <View className="flex-row px-6 mt-12 items-center space-x-2">
         
-        <View className="w-16 h-16 bg-black rounded-full items-center justify-center">
-          <Text className="text-[#4DABB7] text-4xl font-semibold ">Go</Text>
+        <View className="w-20 h-20 bg-white rounded-full items-center justify-center shadow-lg">
+          {/* <Text className="text-[#4DABB7] text-4xl font-semibold ">Go</Text> */}
+          <Image
+                source={AppLogo}
+                className="w-full h-full object-cover shadow-lg"
+            />
         </View>
 
-        <Text className="text-[#2A2B4B] text-3xl font-semibold">Travel</Text>
+        <Text className="text-white text-3xl font-bold">The Travel Guide</Text>
 
       </View>
 
       {/* Second Section  */}
 
       <View className="px-6 mt-6 space-y-3">
-        <Text className="text-[#3C6072] text-[42px]">
-          Enjoy the Trip with
+        <Text className="text-[#a9b9c1] text-2xl">
+          Enjoy the Trip with 
         </Text>
-        <Text className="text-[#00BCC9] text-[38px] font-bold">
+        {/* [#3c6072] */}
+        <Text className="text-[#d2cd84] text-3xl font-bold">
           Good Moments
         </Text>
 
-        <Text className="text-[#3C6072] text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque nulla corrupti consequuntur delectus, dolor</Text>
+        <Text className="text-black text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque nulla corrupti consequuntur delectus, dolor</Text>
       </View>
 
       {/* Circle Section  */}
 
-      <View className="w-[300px] h-[300px] bg-[#00BCC9] rounded-full absolute bottom-40 -right-36"></View>
-      <View className="w-[400px] h-[400px] bg-[#E99265] rounded-full absolute -bottom-32 -left-36"></View>
+      <View className="w-[50%] h-[50%] bg-[#a9b9c1] rounded-full absolute bottom-24 -right-36"></View>
+      <View className="w-[50%] h-[60%] bg-[#d2cd84] rounded-full absolute -bottom-32 -left-36"></View>
 
       {/* Image Container  */}
       <View className="flex-1 relative items-center justify-center">
         <Animatable.Image 
         animation="fadeIn"
         easing="ease-in-out"
-        source={HeroImage} className="w-[250px] h-[580px] object-cover mt-25"
+        source={HeroImage} className="w-[40%] h-[90%] object-cover"
       />
 
       <TouchableOpacity
       onPress={()=>navigation.navigate("Discover")}
        
-       className="absolute bottom-20 w-24 h-24 border-l-2 border-r-2 border-t-4 border-[#00BCC9] rounded-full items-center justify-center">
+       className="absolute bottom-20 w-24 h-24 border-l-2 border-r-2 border-t-4 border-black rounded-full items-center justify-center">
             
         <Animatable.View 
           animation={"pulse"}
           easing="ease-in-out"
           iterationCount={"infinite"}
-          className="w-20 h-20 items-center justify-center rounded-full bg-[#00BCC9]">
+          className="w-20 h-20 items-center justify-center rounded-full bg-black">
             <Text className="text-gray-50 text-[40px] font-semibold">
               Go
             </Text>

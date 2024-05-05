@@ -20,7 +20,7 @@ const Discover = () => {
   }, [])
   
   return (
-    <SafeAreaView className="flex-1 bg-white relative">
+    <SafeAreaView className="flex-1 bg-[#2A2B4B] relative">
       <View  className="flex-row items-center justify-between px-8 mt-8">
         <View>
             <Text className="text-[40px] text-[#0B646B] font-bold">Discover</Text>
@@ -93,13 +93,18 @@ const Discover = () => {
           <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
             <ItemCarContainer 
               key={"101"} 
-              imageSrc={"https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"} 
+              imageSrc={
+                "https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"
+                } 
               title="Soothing" 
               location="Italy"/>
             <ItemCarContainer 
             key={"102"} 
-            imageSrc={"hotel.png"} 
-            title="Adventure" location="Barcelona"/>
+            imageSrc={
+              "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"
+              } 
+            title="Adventure" 
+            location="Barcelona"/>
           </View>
         </View>
 
@@ -110,4 +115,3 @@ const Discover = () => {
 
 export default Discover
 
-// https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg
