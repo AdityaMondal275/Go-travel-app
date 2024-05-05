@@ -23,11 +23,11 @@ const Discover = () => {
     <SafeAreaView className="flex-1 bg-[#2A2B4B] relative">
       <View  className="flex-row items-center justify-between px-8 mt-8">
         <View>
-            <Text className="text-[40px] text-[#0B646B] font-bold">Discover</Text>
-            <Text className="text-[#527283] text-[36px]">The beauty today</Text>
+            <Text className="text-[40px] text-white font-bold">Discover</Text>
+            <Text className="text-[#a9b9c1] text-2xl">The beauty today</Text>
         </View>
 
-        <View className="w-12 h-12 bg-gray-400 rounded-full items-center justify-center">
+        <View className="w-12 h-12 bg-black shadow-lg rounded-full items-center justify-center">
             <Image
                 source={Avater}
                 className="w-full h-full rounded-full object-cover shadow-lg"
@@ -35,7 +35,7 @@ const Discover = () => {
         </View>
       </View>
 
-      <View className="flex-row items-center bg-gray-50 mx-4 rounded-xl py-1 px-2 shadow-lg mt-4">
+      <View className="flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 shadow-lg mt-4">
         <GooglePlacesAutocomplete
           GooglePlacesDetailsQuery={{fields : 'geometry'}}
           placeholder='Search for places here'
@@ -55,7 +55,7 @@ const Discover = () => {
 
       {/*Menu container*/}
       <ScrollView>
-        <View className='flex-row irems-center justify-between px-8 mt-8'>
+        <View className='flex-row irems-center justify-between rounded-full px-8 mt-8'>
             <MenuContainer
               key={"hotel"}
               title="Hotels"
@@ -83,10 +83,10 @@ const Discover = () => {
 
         <View>
           <View className="flex-row items-center justify-between px-4 mt-8">
-            <Text className="text-[#2C7379] text-[28px] font-bold">Top Tips</Text>
+            <Text className="text-[#a9b9c1] text-[28px] font-bold">Top Tips</Text>
             <TouchableOpacity className="flex-row items-center justify-center space-x-2">
-              <Text className="text-[#A0C4C7] text-[20px] font-bold">Explore</Text>
-              <FontAwesome name="long-arrow-right" size={24} color="#A0C4C7" />
+              <Text className="text-[#a9b9c1] text-[20px] font-bold">Explore</Text>
+              <FontAwesome name="long-arrow-right" size={24} color="#a9b9c1" />
             </TouchableOpacity>
           </View>
 

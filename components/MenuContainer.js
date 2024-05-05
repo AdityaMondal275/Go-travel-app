@@ -8,12 +8,12 @@ const MenuContainer = ({title,imageSrc,type,setType}) => {
   }
   return (
     <TouchableOpacity className="items-center justify-center space-y-2" onPress={handlePress}>
-      <View className={`w-24 h-24 p-2 shadow-sm rounded-full items-center justify-center ${type===title.toLowerCase() ? "bg-gray-100" :""}`}>
+      <View className={`w-24 h-24 p-2 shadow-sm rounded-full items-center justify-center ${type===title.toLowerCase() ? "bg-black" :""}`}>
         <Image
-            source={imageSrc} className="w-full h-full object-contain"
+            source={imageSrc} className="w-full h-full object-contain rounded-full"
         />
       </View>
-      <Text className="text-[#00BCC9] text-xl font-semibold">{title}</Text>
+      <Text className="text-black text-xl font-semibold">{title}</Text>
     </TouchableOpacity>
   )
 }

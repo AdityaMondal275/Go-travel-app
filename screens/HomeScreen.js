@@ -35,7 +35,7 @@ const navigation = useNavigation();
 
       {/* Second Section  */}
 
-      <View className="px-6 mt-6 space-y-3">
+      <View className="px-6 mt-6 mb-8 space-y-3">
         <Text className="text-[#a9b9c1] text-2xl">
           Enjoy the Trip with 
         </Text>
@@ -49,15 +49,15 @@ const navigation = useNavigation();
 
       {/* Circle Section  */}
 
-      <View className="w-[50%] h-[50%] bg-[#a9b9c1] rounded-full absolute bottom-24 -right-36"></View>
-      <View className="w-[50%] h-[60%] bg-[#d2cd84] rounded-full absolute -bottom-32 -left-36"></View>
+      <View className="w-[50%] h-[50%] bg-[#a9b9c1] rounded-[90px] absolute bottom-24 -right-36"></View>
+      <View className="w-[50%] h-[60%] bg-[#d2cd84] rounded-[90px] absolute -bottom-32 -left-36"></View>
 
       {/* Image Container  */}
       <View className="flex-1 relative items-center justify-center">
         <Animatable.Image 
         animation="fadeIn"
         easing="ease-in-out"
-        source={HeroImage} className="w-[40%] h-[90%] object-cover"
+        source={HeroImage} className="w-[221px] h-[500px] object-cover"
       />
 
       <TouchableOpacity
