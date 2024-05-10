@@ -1,23 +1,47 @@
-import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity,  } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import { View, Text, SafeAreaView, Image, ScrollView, Pressable, ActivityIndicator } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
 import { Attractions, Avater, Hotels, Restaurants } from '../assets';
 import MenuContainer from '../components/MenuContainer';
 
 import { FontAwesome } from '@expo/vector-icons';
-import ItemCarContainer from '../components/ItemCarContainer';
+import ItemCardContainer from '../components/ItemCardContainer';
+
+import { OpeenStreetMap, OpenStreetMapAutocomplete } from '@amraneze/osm-autocomplete';
+
 
 const Discover = () => {
     const navigation = useNavigation();
 
-    const [type, setType] = useState("restaurants")
+    const [location, setLocation] = useState(null);
+
+    const handleOnOptionSelected = (option) => {
+      setLocation(option);
+    }
+    const [type, setType] = useState("restaurants");
+    const [isLoading, setIsLoading] = useState(false);
+    const [mainData, setMainData] = useState([]);
+    const [bl_lat, setBl_lat] = useState(null);
+    const [bl_lng, setBl_lng] = useState(null);
+    const [tr_lat, setTr_lat] = useState(null);
+    const [tr_lng, setTr_lng] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown : false,
     });
-  }, [])
+  }, []);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   getPlacesData(bl_lat, bl_lng, tr_lat, tr_lng, type).then((data) => {
+  //     setMainData(data);
+  //     setInterval(() => {
+  //       setIsLoading(false);
+  //     }, 2000);
+  //   })
+  // }, [bl_lat, bl_lng, tr_lat, tr_lng, type]);
   
   return (
     <SafeAreaView className="flex-1 bg-[#2A2B4B] relative">
@@ -42,16 +66,42 @@ const Discover = () => {
           fetchDetails={true}
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
-            console.log(details?.geometry?.viewport);
+            console.log(data, details);
           }}
 
-          // query={{
-          //   key: 'YOUR API KEY',
-          //   language: 'en',
-          // }}
+          query={{
+            key: 'AIzaSyA2Jikr1CvwRm0mDnhAad9x46-O0IfhaxA',
+            language: 'en',
+          }}
         />
 
       </View>
+
+      {/* <View className="wrapper flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 shadow-lg mt-4">
+      <OpenStreetMapAutocomplete
+        value={null}
+        onChange={(option) => handleOnOptionSelected("First component", option)}
+      />
+      <OpenStreetMapAutocomplete
+        value={{
+          lat: "0",
+          lon: "0",
+          type: "0",
+          class: "0",
+          osm_id: 0,
+          licence: "0",
+          osm_type: "0",
+          place_id: 0,
+          importance: 0,
+          display_name: "",
+          boundingbox: []
+        }}
+        onChange={(option) =>
+          handleOnOptionSelected("Second component", option)
+        }
+      />
+      
+    </View> */}
 
       {/*Menu container*/}
       <ScrollView>
@@ -64,7 +114,7 @@ const Discover = () => {
               setType={setType}
             />
 
-<MenuContainer
+            <MenuContainer
               key={"attractions"}
               title="Attractions"
               imageSrc={Attractions}
@@ -72,7 +122,7 @@ const Discover = () => {
               setType={setType}
             />
 
-<MenuContainer
+            <MenuContainer
               key={"restaurants"}
               title="Restaurants"
               imageSrc={Restaurants}
@@ -84,34 +134,34 @@ const Discover = () => {
         <View>
           <View className="flex-row items-center justify-between px-4 mt-8">
             <Text className="text-[#a9b9c1] text-[28px] font-bold">Top Tips</Text>
-            <TouchableOpacity className="flex-row items-center justify-center space-x-2">
+            <Pressable className="flex-row items-center justify-center space-x-2">
               <Text className="text-[#a9b9c1] text-[20px] font-bold">Explore</Text>
               <FontAwesome name="long-arrow-right" size={24} color="#a9b9c1" />
-            </TouchableOpacity>
+            </Pressable>
           </View>
 
           <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
-            <ItemCarContainer 
+            <ItemCardContainer 
               key={"101"} 
-              imageSrc={
-                "https://cdn.pixabay.com/photo/2024/01/04/16/48/landscape-8487906_1280.jpg"
-                } 
+              imageSrc= {
+                'https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg'}
+                
               title="Soothing" 
               location="Italy"/>
-            <ItemCarContainer 
-            key={"102"} 
-            imageSrc={
-              "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"
-              } 
-            title="Adventure" 
-            location="Barcelona"/>
+            <ItemCardContainer 
+              key={"102"} 
+              imageSrc=
+              ''
+               
+              title="Adventure" 
+              location="Barcelona"/>
           </View>
         </View>
 
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Discover
+export default Discover;
 

@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, Image, Pressable } from 'react-native'
 import React, { useLayoutEffect } from 'react';
 import {useNavigation} from '@react-navigation/native';
 import { HeroImage } from '../assets';
@@ -60,7 +60,7 @@ const navigation = useNavigation();
         source={HeroImage} className="w-[221px] h-[500px] object-cover"
       />
 
-      <TouchableOpacity
+      <Pressable
       onPress={()=>navigation.navigate("Discover")}
        
        className="absolute bottom-20 w-24 h-24 border-l-2 border-r-2 border-t-4 border-black rounded-full items-center justify-center">
@@ -74,7 +74,7 @@ const navigation = useNavigation();
               Go
             </Text>
         </Animatable.View> 
-      </TouchableOpacity>
+      </Pressable>
 
       </View>
 
