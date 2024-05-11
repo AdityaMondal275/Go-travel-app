@@ -9,8 +9,8 @@ const ItemCardContainer = ({imageSrc , title, location}) => {
             className="w-full h-40 rounded-md object-cover"
         />
 
-        <Text className="text-[#428288] text-[18px] font-bold">
-          {title ?.length > 18 ? '${title.slice(0, 18)}..' : title}
+        <Text className="text-[rgb(66,130,136)] text-[18px] font-bold">
+          {title ?.length > 14 ? `${title.slice(0, 14)}..` : title}
         </Text>
     </TouchableOpacity>
   )

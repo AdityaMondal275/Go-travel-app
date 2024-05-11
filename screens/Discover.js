@@ -177,7 +177,7 @@ const Discover = () => {
               imageSrc= {
                 "https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"}
                 
-              title="Soothing" 
+              title="Soothing ids this jih" 
               location="Italy"/>
             <ItemCardContainer 
               key={"102"} 
