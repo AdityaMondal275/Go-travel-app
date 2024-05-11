@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, ScrollView, Pressable, ActivityIndicator } from 'react-native'
+import { View, Text, SafeAreaView, Image, ScrollView, Pressable, ActivityIndicator, StyleSheet } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
@@ -51,22 +51,22 @@ const Discover = () => {
             <Text className="text-[#a9b9c1] text-2xl">The beauty today</Text>
         </View>
 
-        <View className="w-12 h-12 bg-black shadow-lg rounded-full items-center justify-center">
+        <View className="w-12 h-12 bg-black rounded-full items-center justify-center">
             <Image
                 source={Avater}
-                className="w-full h-full rounded-full object-cover shadow-lg"
+                className="w-full h-full rounded-full object-cover "
             />
         </View>
       </View>
 
-      <View className="flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 shadow-lg mt-4">
+      <View className="flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 mt-4">
         <GooglePlacesAutocomplete
           GooglePlacesDetailsQuery={{fields : 'geometry'}}
           placeholder='Search for places here'
           fetchDetails={true}
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
-            console.log(data, details);
+            console.log(details?.geometry?.viewport);
           }}
 
           query={{
@@ -77,7 +77,7 @@ const Discover = () => {
 
       </View>
 
-      {/* <View className="wrapper flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 shadow-lg mt-4">
+      {/* <View className="wrapper flex-row items-center bg-black mx-6 rounded-xl py-1 px-2 mt-4">
       <OpenStreetMapAutocomplete
         value={null}
         onChange={(option) => handleOnOptionSelected("First component", option)}
@@ -102,6 +102,7 @@ const Discover = () => {
       />
       
     </View> */}
+
 
       {/*Menu container*/}
       <ScrollView>
@@ -164,4 +165,3 @@ const Discover = () => {
 };
 
 export default Discover;
-

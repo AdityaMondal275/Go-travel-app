@@ -21,11 +21,11 @@ const navigation = useNavigation();
       {/* First Section  */}
       <View className="flex-row px-6 mt-12 items-center space-x-2">
         
-        <View className="w-20 h-20 bg-white rounded-full items-center justify-center shadow-lg">
+        <View className="w-20 h-20 bg-white rounded-full items-center justify-center">
           {/* <Text className="text-[#4DABB7] text-4xl font-semibold ">Go</Text> */}
           <Image
                 source={AppLogo}
-                className="w-full h-full object-cover shadow-lg"
+                className="w-full h-full object-cover"
             />
         </View>
 
