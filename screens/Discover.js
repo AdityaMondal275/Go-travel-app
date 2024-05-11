@@ -8,6 +8,8 @@ import MenuContainer from '../components/MenuContainer';
 import { FontAwesome } from '@expo/vector-icons';
 import ItemCardContainer from '../components/ItemCardContainer';
 
+import AutocompleteInput from 'react-native-autocomplete-input';
+
 import { OpeenStreetMap, OpenStreetMapAutocomplete } from '@amraneze/osm-autocomplete';
 
 
@@ -17,7 +19,13 @@ const Discover = () => {
     const [location, setLocation] = useState(null);
 
     const handleOnOptionSelected = (option) => {
-      setLocation(option);
+      console.log(JSON.stringify(option));
+
+      bl_lat = option.boundingbox[0];
+      tr_lat = option.boundingbox[1];
+      bl_lng= option.boundingbox[2];
+      tr_lng= option.boundingbox[3];
+      //setLocation(option);
     }
     const [type, setType] = useState("restaurants");
     const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +34,18 @@ const Discover = () => {
     const [bl_lng, setBl_lng] = useState(null);
     const [tr_lat, setTr_lat] = useState(null);
     const [tr_lng, setTr_lng] = useState(null);
+    //Test Atuocom
+    const [inputValue, setInputValue] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const handleTextChange = (text) => {
+      console.log(text);
+      setInputValue(text);
+    };
+  
+    const handleSuggestionSelect = (suggestion) => {
+      // Handle the selected suggestion here
+    };
+  //Test Atuocom
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -59,7 +79,7 @@ const Discover = () => {
         </View>
       </View>
 
-      <View className="flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 mt-4">
+      {/* <View className="flex-row items-center bg-black mx-4 rounded-xl py-1 px-2 mt-4">
         <GooglePlacesAutocomplete
           GooglePlacesDetailsQuery={{fields : 'geometry'}}
           placeholder='Search for places here'
@@ -75,14 +95,14 @@ const Discover = () => {
           }}
         />
 
-      </View>
+      </View> */}
 
-      {/* <View className="wrapper flex-row items-center bg-black mx-6 rounded-xl py-1 px-2 mt-4">
+      { <View className="wrapper flex-row items-center bg-black mx-6 rounded-xl py-1 px-2 mt-4">
       <OpenStreetMapAutocomplete
         value={null}
-        onChange={(option) => handleOnOptionSelected("First component", option)}
+        onChange={handleOnOptionSelected}
       />
-      <OpenStreetMapAutocomplete
+     {/* <OpenStreetMapAutocomplete
         value={{
           lat: "0",
           lon: "0",
@@ -99,10 +119,20 @@ const Discover = () => {
         onChange={(option) =>
           handleOnOptionSelected("Second component", option)
         }
-      />
+      /> */}
       
-    </View> */}
-
+    </View> }
+{/*
+  <View className="wrapper flex-row items-center bg-black mx-6 rounded-xl py-1 px-2 mt-4">
+  <AutocompleteInput
+        placeholder="Search"
+        value={inputValue}
+        onChangeText={handleTextChange}
+        data={suggestions}
+        onSuggestionSelected={handleSuggestionSelect}
+      />
+       </View>*/
+}
 
       {/*Menu container*/}
       <ScrollView>
@@ -152,7 +182,7 @@ const Discover = () => {
             <ItemCardContainer 
               key={"102"} 
               imageSrc=
-              ''
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmx4YVA3dmRS_WgwnwrKCB4AhgwtvCo-S0A2_5KBWWqxxSksGsrBkXeonEFQ&s"
                
               title="Adventure" 
               location="Barcelona"/>
