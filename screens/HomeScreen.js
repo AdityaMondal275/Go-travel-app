@@ -33,26 +33,24 @@ const navigation = useNavigation();
 
       </View>
 
-      {/* Second Section  */}
-
       <View className="px-6 mt-6 mb-8 space-y-3">
-        <Text className="text-[#a9b9c1] text-2xl">
-          Enjoy the Trip with 
-        </Text>
-        {/* [#3c6072] */}
-        <Text className="text-[#d2cd84] text-3xl font-bold">
-          Good Moments
-        </Text>
+      
+          <Text className="text-black text-2xl font-semibold">
+            Let's plan for Trips    
+          </Text>
+          <Text className="text-[#d2cd84] text-3xl font-bold">
+            Together
+          </Text>
+        
 
-        <Text className="text-black text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque nulla corrupti consequuntur delectus, dolor</Text>
+        <Text className="text-[#a9b9c1] text-base">Search for your faourite places and know all the best restaurants, hotels and attraction spots.</Text>
       </View>
 
-      {/* Circle Section  */}
 
       <View className="w-[50%] h-[50%] bg-[#a9b9c1] rounded-[90px] absolute bottom-24 -right-36"></View>
       <View className="w-[50%] h-[60%] bg-[#d2cd84] rounded-[90px] absolute -bottom-32 -left-36"></View>
 
-      {/* Image Container  */}
+
       <View className="flex-1 relative items-center justify-center">
         <Animatable.Image 
         animation="fadeIn"

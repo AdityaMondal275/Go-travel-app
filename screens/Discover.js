@@ -2,7 +2,7 @@ import { View, Text, SafeAreaView, Image, ScrollView, Pressable, ActivityIndicat
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
-import { Attractions, Avater, Hotels, Restaurants } from '../assets';
+import { Attractions, Avater, Hotels, NotFound, Restaurants } from '../assets';
 import MenuContainer from '../components/MenuContainer';
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ import ItemCardContainer from '../components/ItemCardContainer';
 import AutocompleteInput from 'react-native-autocomplete-input';
 
 import { OpeenStreetMap, OpenStreetMapAutocomplete } from '@amraneze/osm-autocomplete';
+import {getPlacesData} from '../api/index';
 
 
 const Discover = () => {
@@ -18,7 +19,7 @@ const Discover = () => {
 
     const [location, setLocation] = useState(null);
 
-    const handleOnOptionSelected = (option) => {
+    let handleOnOptionSelected = (option) => {
       console.log(JSON.stringify(option));
 
       bl_lat = option.boundingbox[0];
@@ -27,7 +28,7 @@ const Discover = () => {
       tr_lng= option.boundingbox[3];
       //setLocation(option);
     }
-    const [type, setType] = useState("restaurants");
+    const [type, setType] = useState(type);
     const [isLoading, setIsLoading] = useState(false);
     const [mainData, setMainData] = useState([]);
     const [bl_lat, setBl_lat] = useState(null);
@@ -53,15 +54,15 @@ const Discover = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   getPlacesData(bl_lat, bl_lng, tr_lat, tr_lng, type).then((data) => {
-  //     setMainData(data);
-  //     setInterval(() => {
-  //       setIsLoading(false);
-  //     }, 2000);
-  //   })
-  // }, [bl_lat, bl_lng, tr_lat, tr_lng, type]);
+  useEffect(() => {
+    setIsLoading(true);
+    getPlacesData(bl_lat, bl_lng, tr_lat, tr_lng, type).then((data) => {
+      setMainData(data);
+      setInterval(() => {
+        setIsLoading(false);
+      }, 2000);
+    })
+  }, [bl_lat, bl_lng, tr_lat, tr_lng, type]);
   
   return (
     <SafeAreaView className="flex-1 bg-[#2A2B4B] relative">
@@ -97,10 +98,19 @@ const Discover = () => {
 
       </View> */}
 
-      { <View className="wrapper flex-row items-center bg-black mx-6 rounded-xl py-1 px-2 mt-4">
-      <OpenStreetMapAutocomplete
+      { <View className="wrapper flex-row items-center bg-gray-500 mx-6 rounded-xl py-1 px-2 mt-4">
+      <OpenStreetMapAutocomplete 
         value={null}
         onChange={handleOnOptionSelected}
+        fetchDetails={true}
+        onPress={(data, details = null) => {
+        console.log(data?.details?.geometry?.viewport);
+        setBl_lat(details?.geometry?.viewport?.southwest?.lat)
+        setBl_lng(details?.geometry?.viewport?.southwest?.lon)
+        setTr_lat(details?.geometry?.viewport?.northeast?.lat)
+        setTr_lng(details?.geometry?.viewport?.northeast?.lon)
+      }}
+
       />
      {/* <OpenStreetMapAutocomplete
         value={{
@@ -135,10 +145,13 @@ const Discover = () => {
 }
 
       {/*Menu container*/}
+      {isLoading ? (<View className="flex-1 mt-[100px]">
+        <ActivityIndicator size="large" color="white"/>
+      </View>) : (
       <ScrollView>
         <View className='flex-row irems-center justify-between rounded-full px-8 mt-8'>
             <MenuContainer
-              key={"hotel"}
+              key={"hotels"}
               title="Hotels"
               imageSrc={Hotels}
               type={type}
@@ -172,24 +185,43 @@ const Discover = () => {
           </View>
 
           <View className="px-4 mt-8 flex-row items-center justify-evenly flex-wrap">
-            <ItemCardContainer 
-              key={"101"} 
-              imageSrc= {
-                "https://images.hdqwalls.com/wallpapers/sunset-landscape-mountains-clouds-4k-jj.jpg"}
-                
-              title="Soothing ids this jih" 
-              location="Italy"/>
-            <ItemCardContainer 
-              key={"102"} 
-              imageSrc=
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmx4YVA3dmRS_WgwnwrKCB4AhgwtvCo-S0A2_5KBWWqxxSksGsrBkXeonEFQ&s"
-               
-              title="Adventure" 
-              location="Barcelona"/>
+            {mainData?.length > 0 ? (
+              <>
+                {mainData?.map((data, i) => (
+                  <ItemCardContainer 
+                    key={i} 
+                    imageSrc= {
+                      data?.photo?.images?.medium?.url ?
+                      data?.photo?.images?.medium?.url :
+                      "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+                    }
+                    title={data?.name}
+                    location={data?.location_string}
+                    data={data}
+              />))}
+            
+              </>
+              ) : (
+                <>
+                  <View className="w-full h-[600px] items-center space-y-8 justify-center">
+                    <Image
+                    source={NotFound}
+                      className="w-40 h-40 object-cover"
+                    />
+                    <Text className="text-white font-bold">
+                      Not Found..
+                    </Text>
+                  </View>
+                </>
+                )
+            }
+            
           </View>
         </View>
 
       </ScrollView>
+      )}
+      
     </SafeAreaView>
   );
 };
