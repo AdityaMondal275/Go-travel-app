@@ -22,10 +22,10 @@ const Discover = () => {
     let handleOnOptionSelected = (option) => {
       console.log(JSON.stringify(option));
 
-      bl_lat = option.boundingbox[0];
-      tr_lat = option.boundingbox[1];
-      bl_lng= option.boundingbox[2];
-      tr_lng= option.boundingbox[3];
+      setBl_lat(option.boundingbox[0]);
+      setTr_lat(option.boundingbox[1]);
+      setBl_lng(option.boundingbox[2]);
+      setTr_lng(option.boundingbox[3]);
       //setLocation(option);
     }
     const [type, setType] = useState(type);
@@ -103,13 +103,7 @@ const Discover = () => {
         value={null}
         onChange={handleOnOptionSelected}
         fetchDetails={true}
-        onPress={(data, details = null) => {
-        console.log(data?.details?.geometry?.viewport);
-        setBl_lat(details?.geometry?.viewport?.southwest?.lat)
-        setBl_lng(details?.geometry?.viewport?.southwest?.lon)
-        setTr_lat(details?.geometry?.viewport?.northeast?.lat)
-        setTr_lng(details?.geometry?.viewport?.northeast?.lon)
-      }}
+       
 
       />
      {/* <OpenStreetMapAutocomplete
